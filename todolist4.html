@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    :root{
+    --background: #abd1c6;
+    --headline: #001e1d;
+    --subheadline: #0f3433;
+    --card-background: #004643;
+    --card-heading:#fffffe;
+    --card-paragraph:#abd1c6;
+    --stroke:#001e1d;
+    --main:#e8e4e6;
+    --highlight:#f9bc60;
+    --secondary:#abd1c6;
+    --tertiary:#e16162;
+    }
+        
+        body {
+            margin: 0;
+            min-width: 250px;
+            background-color: var(--background);
+        }
+        
+        .container{
+            margin-top: 120px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            margin-right: auto;
+            margin-left: auto;     
+        }
+
+
+        .list-adding {
+            display: flex;
+            flex-direction: row;
+            border-radius: 8px;
+            padding: 24px; 
+            background-color: var(--card-background);
+            justify-content:space-evenly;
+            font-size: 16px;
+            font-family: sans-serif;
+            color:var(--card-heading)
+        }
+
+        .text-input{
+            width: calc(100% - 100px);
+            border: none;
+            border-radius: 8px;
+        }
+
+        .todo-container__add-btn{
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: var(--highlight);
+            color: var(--subheadline);
+            border: 0px;     
+        }
+
+        .myUL{
+            align-items: center;
+        }
+
+        .item{
+            border-radius: 8px;
+            padding: 8px; 
+            background-color: var(--card-background);
+            display: flex;
+            justify-content: space-between;
+            margin: 16px;
+            font-size: 16px;
+            font-family: sans-serif;
+            color:var(--card-paragraph)
+        }
+
+        .close{
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 16px;
+            font-family: sans-serif;
+            cursor: pointer;
+            color:var(--card-paragraphs);
+        }
+        .close:hover{
+            font-weight: 600;
+        }
+
+        .todo-container__add-btn:hover{
+            box-shadow: 2px 2px rgb(54, 82, 92);
+        }
+
+        .item:hover{
+            box-shadow: 2px 2px rgb(54, 82, 92);
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container{
+                width: 100%;
+            }
+        }
+
+    </style>
+    <title>My To Do List</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="list-adding">
+            <input id="my-input" class="text-input" type="text" placeholder="Add your to-do" id="input-box">
+            <button onclick="newElement()" class="todo-container__add-btn">Add</button>
+        </div>
+            <ul class="myUL">
+                <li class="item"><input type="checkbox" class="checkmark">Do grocery<span class="close">x</span></li>
+                <li class="item"><input type="checkbox">Go gym<span class="close">x</span></li>
+                <li class="item"><input type="checkbox">Study coding<span class="close">x</span></li>
+                <li class="item"><input type="checkbox">Study danish<span class="close">x</span></li>
+                <li class="item"><input type="checkbox">Pet a cat<span class="close">x</span></li>
+            </ul>
+    </div>
+
+    <script>
+        var closebtns = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < closebtns.length; i++) {
+        closebtns[i].addEventListener("click", function() {
+        this.parentElement.style.display = 'none';
+        });
+        }
+
+        const inputBox = document.getElementById("input-box");
+        const listContainer = document.getElementById("item-list");
+        function addTask(){
+            if(inputBox.value === ''){
+                alert("You must write something!");
+            }
+            else{
+                let li = document.createElement("li");
+                li.innerHTML = inputBox.value;
+                listContainer.appendChild(li);
+            }
+        }
+
+        function newElement() {
+    var inputValue = document.getElementById("my-input").value;
+    if (inputValue === '') {
+        alert("You must write something!");
+    } else {
+        var li = document.createElement("li");
+        li.className = "item";
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "checkmark";
+        var t = document.createTextNode(inputValue);
+        li.appendChild(checkbox);
+        li.appendChild(t);
+        document.getElementById("myUL").appendChild(li);
+        document.getElementById("my-input").value = "";
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+    }
+    var closebtns = document.getElementsByClassName("close");
+    for (var i = 0; i < closebtns.length; i++) {
+        closebtns[i].addEventListener("click", function() {
+            this.parentElement.style.display = 'none';
+        });
+    }
+}
+
+
+
+    </script>
+
+</body>
+
+</html>
